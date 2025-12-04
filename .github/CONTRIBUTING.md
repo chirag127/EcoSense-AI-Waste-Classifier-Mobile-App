@@ -1,85 +1,98 @@
-# 🤝 Contributing to EcoSnap-AI-Waste-Classification-Mobile-App
+# Contributing to EcoSnap-AI-Waste-Classification-Mobile-App
 
-As the **Apex Technical Authority**, we welcome contributions that enhance the robustness, accuracy, and future-proofing of this Waste Classification Mobile Application. All contributions must adhere to the **Zero-Defect, High-Velocity, Future-Proof** philosophy.
+## 1. The Apex Standard: A Culture of Engineering Excellence
 
-## 1. Architectural Alignment & Standards
+Thank you for your interest in contributing to EcoSnap. This project operates under a mandate of **Zero-Defect, High-Velocity, Future-Proof** engineering. We adhere to standards equivalent to those at top-tier technology firms. Contributions that do not meet this bar will be rejected. This document is the single source of truth for the contribution process.
 
-Before submitting any Pull Request (PR), ensure your changes align with the established 2026 mobile development standards and the core principles defined in our `AGENTS.md` file. 
+By participating, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-**Key Pillars for Review:**
+## 2. The Contribution Gauntlet: A Step-by-Step Protocol
 
-*   **TypeScript Strictness:** All new or modified TypeScript code must be strictly typed (no `any`).
-*   **Performance Focus:** Mobile performance is paramount. Avoid unnecessary re-renders and inefficient state management.
-*   **AI Model Integrity:** Changes touching the Computer Vision pipeline (TensorFlow Lite/CoreML wrappers) must include robust validation logic for input normalization and output confidence scores.
-*   **DX (Developer Experience):** Maintain high standards for code clarity, adhering to the **SOLID**, **DRY**, and **YAGNI** principles.
+All contributions, without exception, must follow this workflow. Bypassing this process will result in an immediate closure of the Pull Request.
 
-## 2. Workflow: The Four Stages of Contribution
+### Step 0: Issue-Driven Development
 
-We utilize a standard GitHub flow, heavily augmented by automated checks enforced by our CI/CD pipeline (`.github/workflows/ci.yml`).
+All work must originate from an existing issue. **No issue, no code.**
 
-### Stage 1: Local Setup & Branching
+1.  **Search:** First, search the [existing issues](https://github.com/chirag127/EcoSnap-AI-Waste-Classification-Mobile-App/issues) to prevent duplication.
+2.  **Create:** If no relevant issue exists, [create one using the appropriate template](https://github.com/chirag127/EcoSnap-AI-Waste-Classification-Mobile-App/issues/new/choose). Provide a comprehensive description of the bug or feature proposal.
+3.  **Assign:** Wait for a maintainer to triage the issue and assign it to you. Do not begin work until you are assigned.
 
-1.  **Fork:** Fork this repository: `https://github.com/chirag127/EcoSnap-AI-Waste-Classification-Mobile-App`.
-2.  **Clone:** Clone your fork locally.
-3.  **Branching:** Create a new feature branch based off `main`. Name it descriptively using prefixes:
-    *   `feat/short-description` for new features.
-    *   `fix/issue-number-description` for bug fixes.
-    *   `refactor/area-description` for structural improvements.
+### Step 1: Local Environment Setup
+
+- **Prerequisites:** Node.js (LTS), Yarn, Expo CLI, and Git.
+- **Fork & Clone:** Fork the repository, then clone your fork locally.
 
 bash
-git clone https://github.com/chirag127/EcoSnap-AI-Waste-Classification-Mobile-App.git
+# 1. Clone your forked repository
+git clone https://github.com/<YOUR_USERNAME>/EcoSnap-AI-Waste-Classification-Mobile-App.git
 cd EcoSnap-AI-Waste-Classification-Mobile-App
-git checkout -b feat/add-new-recycling-facility-lookup
+
+# 2. Add the original repository as an upstream remote
+git remote add upstream https://github.com/chirag127/EcoSnap-AI-Waste-Classification-Mobile-App.git
+
+# 3. Install dependencies using Yarn (preferred)
+yarn install
+
+# 4. Run the development server
+npx expo start
 
 
-### Stage 2: Development & Verification (Local Enforcement)
+### Step 2: Branching and Committing
 
-Before committing, ensure all local checks pass. This preempts CI failures and speeds up the review process.
+- **Branching:** Create a new branch from an up-to-date `main` branch. Use the naming convention `type/issue-id/short-description`.
 
-1.  **Install Dependencies:**
-    bash
-npm install
+bash
+# Sync your main branch with upstream
+git fetch upstream
+git checkout main
+git merge upstream/main
 
-2.  **Run Linter/Formatter (Biome):** Use Biome for instantaneous formatting and linting checks.
-    bash
-npm run lint:fix
-
-3.  **Run Unit Tests (Vitest):** Ensure all affected unit tests pass.
-    bash
-npm run test:unit
-
-4.  **Verification:** Run the application to manually verify your changes in the Expo environment.
-    bash
-npm run dev
+# Create your feature branch
+git checkout -b feature/117/add-image-cropping
 
 
-### Stage 3: Submission (Pull Request)
+- **Committing:** We enforce **Conventional Commits**. Your commit messages are part of the codebase and must be clear, concise, and structured.
+  - **Format:** `<type>(<scope>): <subject>` (e.g., `feat(camera): implement zoom functionality` or `fix(auth): resolve token refresh loop`).
+  - **Types:** `feat`, `fix`, `build`, `chore`, `ci`, `docs`, `perf`, `refactor`, `revert`, `style`, `test`.
 
-1.  **Commit:** Commit changes following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-    bash
-git push origin feat/short-description
+### Step 3: Code Quality and Verification
 
-2.  **PR Creation:** Open a Pull Request targeting the `main` branch of `chirag127/EcoSnap-AI-Waste-Classification-Mobile-App`.
-3.  **Template Usage:** **MANDATORY:** Use the provided `PULL_REQUEST_TEMPLATE.md` to structure your submission. Clearly document the motivation, technical approach, and verification steps taken.
+- **Linting & Formatting:** The project uses TypeScript, ESLint, and Prettier to enforce a strict and consistent coding style. Your code must be free of linting errors.
 
-### Stage 4: Review and Iteration
+bash
+# Run the linter
+yarn lint
 
-*   The CI pipeline will automatically trigger the Build, Test, and Lint stages. **Do not request a review until all checks pass.**
-*   Address feedback promptly. Major architectural disagreements will be resolved by the Apex Technical Authority based on alignment with long-term maintainability goals.
+# Automatically format code
+yarn format
 
-## 3. Reporting Issues and Security
 
-If you discover a bug or a security vulnerability, **DO NOT** open a public issue immediately. Refer to the dedicated files:
+- **Testing:** All new features must be accompanied by unit tests. All bug fixes must include a regression test. Code coverage must not decrease.
 
-*   **Bugs:** Please use the issue template located at `.github/ISSUE_TEMPLATE/bug_report.md`.
-*   **Security:** Follow the secure disclosure process outlined in `.github/SECURITY.md`.
+bash
+# Run all tests
+yarn test
 
-## 4. Code Style & Commit Hygiene
 
-We enforce a high standard for code readability and history integrity. 
+## 3. Pull Request Submission
 
-*   **Linter:** All code must pass Biome checks without errors or warnings.
-*   **Commits:** Commit messages must be atomic and descriptive. Imperfect, overlapping commits will be squashed during merge approval to maintain a clean project history.
+Once your changes are complete, tested, and linted, you may open a Pull Request against the `main` branch of the upstream repository.
 
---- 
-*Thank you for contributing to the future of sustainable technology.*
+1.  **Use the Template:** Fill out the [Pull Request Template](./PULL_REQUEST_TEMPLATE.md) completely. Provide a detailed summary of changes and link the issue it resolves using `Closes #117`.
+2.  **Pass CI Checks:** The PR will trigger a series of automated checks via GitHub Actions. All checks must pass. A failing build is an automatic rejection criteria.
+3.  **Code Review:** A maintainer will review your submission. Be prepared to address feedback and make changes. We value constructive, ego-free technical discussions.
+4.  **Merge:** Once approved and all checks are green, your PR will be squashed and merged by a maintainer.
+
+## 4. Architectural Principles
+
+To ensure your contribution aligns with the project's long-term vision, adhere to these architectural principles:
+
+- **TypeScript (Strict Mode):** Type safety is non-negotiable.
+- **Feature-Sliced Design (FSD):** Organize code by features (e.g., `authentication`, `classification`, `history`) for maximum scalability and maintainability.
+- **DRY (Don't Repeat Yourself):** Abstract and reuse logic where appropriate.
+- **SOLID:** Follow SOLID principles for robust and testable object-oriented design.
+
+## 5. Reporting Security Vulnerabilities
+
+Do not create a public issue for security vulnerabilities. Refer to our [Security Policy](./SECURITY.md) for the proper disclosure procedure.
