@@ -20,7 +20,7 @@
     "expo": "~52.0.47",
     "expo-camera": "~16.0.18",
     "expo-dev-client": "~5.2.4",
-    "expo-image-manipulator": "^13.0.6",
+    "expo-image-manipulator": "^13.1.7",
     "expo-image-picker": "~16.0.6",
     "expo-modules-core": "^2.2.3",
     "expo-speech": "~13.0.1",
